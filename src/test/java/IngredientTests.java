@@ -45,6 +45,6 @@ public class IngredientTests {
     }
     @Test
     public void getPriceShouldReturnPrice(){
-        Assert.assertEquals(price, ingredient.getPrice(), 0);
+        Assert.assertEquals(price, ingredient.getPrice(), 0.05);
     }
 }

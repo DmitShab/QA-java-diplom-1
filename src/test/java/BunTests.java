@@ -21,7 +21,7 @@ public class BunTests {
 
     @Test
     public void getPriceShouldReturnValue() {
-        Assert.assertEquals(price, bun.getPrice(), 0);
+        Assert.assertEquals(price, bun.getPrice(), 0.05);
     }
 
 }

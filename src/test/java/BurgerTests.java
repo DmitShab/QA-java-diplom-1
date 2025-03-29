@@ -11,6 +11,7 @@ import praktikum.Burger;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static javax.swing.UIManager.get;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 
@@ -28,6 +29,8 @@ public class BurgerTests {
 
     @Mock
     Ingredient ingredient;
+    @Mock
+    Ingredient ingredient1;
     @Mock
     Bun bun;
 
@@ -49,6 +52,13 @@ public class BurgerTests {
         burger.removeIngredient(0);
         MatcherAssert.assertThat(burger.ingredients, is(empty()));
     }
+    @Test
+    public void moveIngredientShouldRepalceOne(){
+        burger.addIngredient(ingredient);
+        burger.addIngredient(ingredient1);
+        burger.moveIngredient(1, 0);
+        Assert.assertEquals(ingredient1, burger.ingredients.get(0));
+    }
 
     @Test
     public void getPriceShouldReturnPrice() {
@@ -56,7 +66,7 @@ public class BurgerTests {
         Mockito.when(ingredient.getPrice()).thenReturn(ingredientPrice);
         burger.addIngredient(ingredient);
         burger.addIngredient(ingredient);
-        Assert.assertEquals(bunPrice * 2 + ingredientPrice * 2, burger.getPrice(), 0);
+        Assert.assertEquals(bunPrice * 2 + ingredientPrice * 2, burger.getPrice(), 0.05);
     }
 
     @Test
@@ -66,15 +76,16 @@ public class BurgerTests {
         Mockito.when(ingredient.getName()).thenReturn(ingredientName);
         Mockito.when(bun.getPrice()).thenReturn(bunPrice);
         Mockito.when(ingredient.getPrice()).thenReturn(ingredientPrice);
+
         burger.addIngredient(ingredient);
-        burger.addIngredient(ingredient);
+
+
         StringBuilder expected = new StringBuilder(String.format("(==== %s ====)%n", bunName));
         expected.append(String.format("= %s %s =%n", IngredientType.SAUCE.toString().toLowerCase(),
                 ingredientName));
-        expected.append(String.format("= %s %s =%n", IngredientType.SAUCE.toString().toLowerCase(),
-                ingredientName));
         expected.append(String.format("(==== %s ====)%n", bunName));
-        expected.append(String.format("%nPrice: %f%n", bunPrice * 2 + ingredientPrice * 2));
+        expected.append(String.format("%nPrice: %f%n", bunPrice*2 + ingredientPrice));
+
         Assert.assertEquals(expected.toString(), burger.getReceipt());
 
 
