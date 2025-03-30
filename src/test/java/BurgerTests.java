@@ -11,7 +11,6 @@ import praktikum.Burger;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
-import static javax.swing.UIManager.get;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 
@@ -52,8 +51,9 @@ public class BurgerTests {
         burger.removeIngredient(0);
         MatcherAssert.assertThat(burger.ingredients, is(empty()));
     }
+
     @Test
-    public void moveIngredientShouldRepalceOne(){
+    public void moveIngredientShouldRepalceOne() {
         burger.addIngredient(ingredient);
         burger.addIngredient(ingredient1);
         burger.moveIngredient(1, 0);
@@ -84,12 +84,10 @@ public class BurgerTests {
         expected.append(String.format("= %s %s =%n", IngredientType.SAUCE.toString().toLowerCase(),
                 ingredientName));
         expected.append(String.format("(==== %s ====)%n", bunName));
-        expected.append(String.format("%nPrice: %f%n", bunPrice*2 + ingredientPrice));
+        expected.append(String.format("%nPrice: %f%n", bunPrice * 2 + ingredientPrice));
 
         Assert.assertEquals(expected.toString(), burger.getReceipt());
 
-
-//        "(==== BunName ====)%n= IngType IngName =%n(==== BunName ====)%n%nPrice: price%n"
 
     }
 }

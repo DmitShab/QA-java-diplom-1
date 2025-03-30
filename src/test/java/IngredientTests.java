@@ -35,16 +35,19 @@ public class IngredientTests {
     public void setUp() {
         ingredient = new Ingredient(type, name, price);
     }
+
     @Test
-    public void getNameShouldReturnName(){
+    public void getNameShouldReturnName() {
         Assert.assertEquals(name, ingredient.getName());
     }
+
     @Test
-    public void getTypeShouldReturnType(){
+    public void getTypeShouldReturnType() {
         Assert.assertEquals(type, ingredient.getType());
     }
+
     @Test
-    public void getPriceShouldReturnPrice(){
+    public void getPriceShouldReturnPrice() {
         Assert.assertEquals(price, ingredient.getPrice(), 0.05);
     }
 }
